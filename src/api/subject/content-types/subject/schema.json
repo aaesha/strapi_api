@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subjects",
+  "info": {
+    "singularName": "subject",
+    "pluralName": "subjects",
+    "displayName": "subject"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name_subject": {
+      "type": "string"
+    },
+    "subject_class_teacher": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subject-class-teacher.subject-class-teacher",
+      "mappedBy": "subject"
+    },
+    "exam": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::exam.exam",
+      "mappedBy": "subject"
+    }
+  }
+}

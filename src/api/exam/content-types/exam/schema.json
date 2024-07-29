@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exams",
+  "info": {
+    "singularName": "exam",
+    "pluralName": "exams",
+    "displayName": "exam"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date_exam": {
+      "type": "date"
+    },
+    "max_score": {
+      "type": "integer"
+    },
+    "exam_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::exam-type.exam-type",
+      "inversedBy": "exam"
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subject.subject",
+      "inversedBy": "exam"
+    },
+    "classes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::class.class",
+      "mappedBy": "exam"
+    },
+    "student_mark": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student-mark.student-mark",
+      "inversedBy": "exams"
+    }
+  }
+}

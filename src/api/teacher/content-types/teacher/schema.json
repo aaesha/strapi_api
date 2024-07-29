@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teachers",
+  "info": {
+    "singularName": "teacher",
+    "pluralName": "teachers",
+    "displayName": "teacher"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "birth_date": {
+      "type": "date"
+    },
+    "birth_city": {
+      "type": "string"
+    },
+    "qualification": {
+      "type": "text"
+    },
+    "phone_number": {
+      "type": "biginteger"
+    },
+    "starting_date": {
+      "type": "date"
+    },
+    "departure_date": {
+      "type": "date"
+    },
+    "subject_class_teacher": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subject-class-teacher.subject-class-teacher",
+      "mappedBy": "teacher"
+    }
+  }
+}

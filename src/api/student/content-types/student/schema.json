@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "student",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_student_name": {
+      "type": "string"
+    },
+    "father_name": {
+      "type": "string"
+    },
+    "mother_name": {
+      "type": "string"
+    },
+    "grand_father_name": {
+      "type": "string"
+    },
+    "phone_number": {
+      "type": "biginteger"
+    },
+    "whatsapp_number": {
+      "type": "biginteger"
+    },
+    "mother_phonenumber": {
+      "type": "biginteger"
+    },
+    "father_phonenumber": {
+      "type": "biginteger"
+    },
+    "address": {
+      "type": "text"
+    },
+    "birth_date": {
+      "type": "date"
+    },
+    "constraints_schoolid": {
+      "type": "biginteger"
+    },
+    "social_situation": {
+      "type": "string"
+    },
+    "living_situation": {
+      "type": "string"
+    },
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class",
+      "inversedBy": "students"
+    }
+  }
+}

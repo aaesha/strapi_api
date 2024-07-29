@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subject_class_teachers",
+  "info": {
+    "singularName": "subject-class-teacher",
+    "pluralName": "subject-class-teachers",
+    "displayName": "subject_class_teacher"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "class": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::class.class",
+      "inversedBy": "subject_class_teacher"
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subject.subject",
+      "inversedBy": "subject_class_teacher"
+    },
+    "teacher": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::teacher.teacher",
+      "inversedBy": "subject_class_teacher"
+    }
+  }
+}

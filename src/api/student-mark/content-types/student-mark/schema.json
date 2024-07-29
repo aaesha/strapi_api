@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "student_marks",
+  "info": {
+    "singularName": "student-mark",
+    "pluralName": "student-marks",
+    "displayName": "student_mark"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "mark": {
+      "type": "integer"
+    },
+    "exams": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exam.exam",
+      "mappedBy": "student_mark"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::student.student"
+    }
+  }
+}
