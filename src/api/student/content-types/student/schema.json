@@ -59,6 +59,27 @@
       "relation": "manyToOne",
       "target": "api::class.class",
       "inversedBy": "students"
+    },
+    "student_marks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::student-mark.student-mark",
+      "inversedBy": "students"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "student"
+    },
+    "behavior_notes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::behavior-note.behavior-note",
+      "mappedBy": "student"
+    },
+    "constraints_schoolid_bast": {
+      "type": "biginteger"
     }
   }
 }

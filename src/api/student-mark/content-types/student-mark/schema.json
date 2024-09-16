@@ -4,7 +4,8 @@
   "info": {
     "singularName": "student-mark",
     "pluralName": "student-marks",
-    "displayName": "student_mark"
+    "displayName": "student_mark",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,14 +17,15 @@
     },
     "exams": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::exam.exam",
-      "mappedBy": "student_mark"
+      "mappedBy": "student_marks"
     },
-    "student": {
+    "students": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::student.student"
+      "relation": "manyToMany",
+      "target": "api::student.student",
+      "mappedBy": "student_marks"
     }
   }
 }

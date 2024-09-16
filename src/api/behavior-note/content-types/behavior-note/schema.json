@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "behavior_notes",
+  "info": {
+    "singularName": "behavior-note",
+    "pluralName": "behavior-notes",
+    "displayName": "BehaviorNote"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "note": {
+      "type": "text"
+    },
+    "date_note": {
+      "type": "date"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "behavior_notes"
+    }
+  }
+}

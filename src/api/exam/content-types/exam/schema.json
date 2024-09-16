@@ -35,9 +35,9 @@
       "target": "api::class.class",
       "mappedBy": "exam"
     },
-    "student_mark": {
+    "student_marks": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::student-mark.student-mark",
       "inversedBy": "exams"
     }

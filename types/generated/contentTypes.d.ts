@@ -771,6 +771,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    student: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::student.student'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -781,6 +786,42 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBehaviorNoteBehaviorNote extends Schema.CollectionType {
+  collectionName: 'behavior_notes';
+  info: {
+    singularName: 'behavior-note';
+    pluralName: 'behavior-notes';
+    displayName: 'BehaviorNote';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    note: Attribute.Text;
+    date_note: Attribute.Date;
+    student: Attribute.Relation<
+      'api::behavior-note.behavior-note',
+      'manyToOne',
+      'api::student.student'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::behavior-note.behavior-note',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::behavior-note.behavior-note',
       'oneToOne',
       'admin::user'
     > &
@@ -864,9 +905,9 @@ export interface ApiExamExam extends Schema.CollectionType {
       'oneToMany',
       'api::class.class'
     >;
-    student_mark: Attribute.Relation<
+    student_marks: Attribute.Relation<
       'api::exam.exam',
-      'manyToOne',
+      'manyToMany',
       'api::student-mark.student-mark'
     >;
     createdAt: Attribute.DateTime;
@@ -1013,6 +1054,22 @@ export interface ApiStudentStudent extends Schema.CollectionType {
       'manyToOne',
       'api::class.class'
     >;
+    student_marks: Attribute.Relation<
+      'api::student.student',
+      'manyToMany',
+      'api::student-mark.student-mark'
+    >;
+    users_permissions_user: Attribute.Relation<
+      'api::student.student',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    behavior_notes: Attribute.Relation<
+      'api::student.student',
+      'oneToMany',
+      'api::behavior-note.behavior-note'
+    >;
+    constraints_schoolid_bast: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1037,6 +1094,7 @@ export interface ApiStudentMarkStudentMark extends Schema.CollectionType {
     singularName: 'student-mark';
     pluralName: 'student-marks';
     displayName: 'student_mark';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1045,12 +1103,12 @@ export interface ApiStudentMarkStudentMark extends Schema.CollectionType {
     mark: Attribute.Integer;
     exams: Attribute.Relation<
       'api::student-mark.student-mark',
-      'oneToMany',
+      'manyToMany',
       'api::exam.exam'
     >;
-    student: Attribute.Relation<
+    students: Attribute.Relation<
       'api::student-mark.student-mark',
-      'oneToOne',
+      'manyToMany',
       'api::student.student'
     >;
     createdAt: Attribute.DateTime;
@@ -1216,6 +1274,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::behavior-note.behavior-note': ApiBehaviorNoteBehaviorNote;
       'api::class.class': ApiClassClass;
       'api::exam.exam': ApiExamExam;
       'api::exam-type.exam-type': ApiExamTypeExamType;
